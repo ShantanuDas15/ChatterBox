@@ -1,0 +1,9 @@
+@echo off
+REM ChatterBox Flutter Run Script
+REM Replace YOUR_GOOGLE_CLIENT_ID with your actual Google Web Client ID
+
+echo Starting ChatterBox Flutter App...
+flutter run --dart-define=GOOGLE_WEB_CLIENT_ID=853726513693-0mo5v0s9g2sj15lg9ej65j8qjog2931u.apps.googleusercontent.com
+
+REM Example:
+REM flutter run --dart-define=GOOGLE_WEB_CLIENT_ID=123456789-abc123.apps.googleusercontent.com

@@ -1,0 +1,37 @@
+# Server Port
+server.port=8080
+
+# MongoDB Atlas Connection
+# Get this from your MongoDB Atlas cluster
+# Format: mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<database>?retryWrites=true&w=majority
+spring.data.mongodb.uri=${MONGODB_URI}
+
+# Google OAuth2 Configuration
+# Get these from Google Cloud Console (https://console.cloud.google.com/)
+# 1. Create a project
+# 2. Enable Google+ API
+# 3. Create OAuth 2.0 credentials
+# 4. Add authorized redirect URIs: http://localhost:8080/login/oauth2/code/google
+spring.security.oauth2.client.registration.google.client-id=${GOOGLE_CLIENT_ID}
+spring.security.oauth2.client.registration.google.client-secret=${GOOGLE_CLIENT_SECRET}
+spring.security.oauth2.client.registration.google.scope=profile,email
+
+########################################
+# JWT Configuration
+########################################
+# Use a strong secret in production (at least 256 bits)
+# Generate with: openssl rand -base64 32
+jwt.secret=${JWT_SECRET}
+
+########################################
+# Logging (optional, helpful during setup)
+########################################
+logging.level.org.springframework.web=INFO
+logging.level.org.springframework.security=INFO
+logging.level.org.springframework.messaging=INFO
+
+########################################
+# App Configuration
+########################################
+# Frontend URL to redirect to after OAuth2 success
+app.frontend.redirect-url=${FRONTEND_REDIRECT_URL:http://localhost:3000/auth/callback}
