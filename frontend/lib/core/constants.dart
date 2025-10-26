@@ -2,12 +2,20 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 
 // IMPORTANT: API Base URL - automatically selects based on platform
 
-// Automatically use the correct URL based on platform
-final String kApiBaseUrl = kIsWeb
-    ? "http://localhost:8080" // Web/Desktop
-    : "http://192.168.1.111:8080"; // Android/iOS physical device
+// Check if API_BASE_URL is provided via --dart-define (for production builds)
+const String _envApiBaseUrl = String.fromEnvironment(
+  'API_BASE_URL',
+  defaultValue: '',
+);
 
-// Alternative configurations (comment out the above and use these if needed):
+// Automatically use the correct URL based on platform and environment
+final String kApiBaseUrl = _envApiBaseUrl.isNotEmpty
+    ? _envApiBaseUrl // Use production URL if provided
+    : (kIsWeb
+        ? "http://localhost:8080" // Web/Desktop development
+        : "http://192.168.1.111:8080"); // Android/iOS physical device
+
+// Alternative configurations for local development:
 // For Android Emulator:
 // const String kApiBaseUrl = "http://10.0.2.2:8080";
 
