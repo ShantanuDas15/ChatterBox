@@ -8,12 +8,10 @@ WORKDIR /app
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 
-# --- ADD THIS LINE ---
 # Make the Maven wrapper executable
 RUN chmod +x mvnw
 
 # Download dependencies (this layer is cached if pom.xml doesn't change)
-# Skip tests during build for faster deployment
 RUN ./mvnw dependency:go-offline -DskipTests
 
 # Copy the source code
@@ -22,5 +20,6 @@ COPY src ./src
 # Package the application
 RUN ./mvnw package -DskipTests
 
-# Command to run the application using the $PORT provided by Render
-CMD ["java", "-Dserver.port=${PORT}", "-jar", "target/*.jar"]
+# --- THIS IS THE CORRECTED LINE ---
+# Command to run the application, specifying the exact jar file
+CMD ["java", "-Dserver.port=${PORT}", "-jar", "target/backend-0.0.1-SNAPSHOT.jar"]
