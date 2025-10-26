@@ -4,7 +4,7 @@
   publish = "build/web"
 
 [build.environment]
-  FLUTTER_VERSION = "3.24.5"
+  FLUTTER_VERSION = "3.35.7"
 
 [[redirects]]
   from = "/*"
